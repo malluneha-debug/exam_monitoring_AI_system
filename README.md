@@ -42,3 +42,14 @@ exam_monitoring_AI_system/
 │
 ├── Defect_Tracker_Template_v0.1.xlsx  # Quality assurance defect tracking sheet
 └── Unit_Test_Plan_v0.1.xlsx       # System testing and verification plan
+## 📂 Project Documentation & Agile Artifacts
+Project management artifacts, structured documentation files, and testing blueprints are organized as follows:
+
+* **`Project_Documentation.pdf`**: Comprehensive system design document detailing architecture, requirements, and workflows.
+* **`Unit_Test_Plan_v0.1.xlsx`**: Outlines test cases, module verification procedures, inputs, and expected outcomes.
+* **`Defect_Tracker_Template_v0.1.xlsx`**: Tracks application bugs, severity levels, and resolution status for quality assurance.
+
+---
+
+## 👥 Contributors & Support
+Developed for academic assessment and secure exam monitoring automation. For support, issues, or feature requests, please open an issue in this repository.
