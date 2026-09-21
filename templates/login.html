@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><title>Candidate Login</title></head>
+<body style="font-family:Arial; background:#f4f4f9; display:flex; justify-content:center; align-items:center; height:100vh; margin:0;">
+    <div style="background:white; padding:30px; border-radius:8px; box-shadow:0 4px 8px rgba(0,0,0,0.1); width:320px;">
+        <h2 style="text-align:center;">Candidate Login</h2>
+        {% if error %}<p style="color:red; font-size:14px; text-align:center;">{{ error }}</p>{% endif %}
+        <form method="POST">
+            <label>Username:</label><br>
+            <input type="text" name="username" required style="width:100%; padding:8px; margin:8px 0 15px 0;"><br>
+            <label>Password:</label><br>
+            <input type="password" name="password" required style="width:100%; padding:8px; margin:8px 0 15px 0;"><br>
+            <button type="submit" style="width:100%; background:#16a34a; color:white; padding:10px; border:none; border-radius:4px; cursor:pointer; font-weight:bold;">Login</button>
+        </form>
+        <p style="margin-top:15px; text-align:center; font-size:14px;"><a href="/register">Don't have an account? Register here</a></p>
+    </div>
+</body>
+</html>

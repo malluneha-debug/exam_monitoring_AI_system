@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExamGuard Admin Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">ExamGuard Admin Dashboard</span>
+            <a href="{{ url_for('logout') }}" class="btn btn-outline-light btn-sm">Logout</a>
+        </div>
+    </nav>
+
+    <div class="container my-4">
+        
+        <!-- 1. Data Science Analytics & Heatmaps -->
+        <h2 class="mb-3 text-secondary">Data Science Analytics & Heatmaps</h2>
+        <div class="row mb-5">
+            <div class="col-md-6 mb-3">
+                <div class="card p-3 shadow-sm border-0">
+                    <h4 class="h5 text-dark mb-3">Integrity Score Distribution</h4>
+                    <div class="text-center">
+                        <img src="{{ url_for('static', filename='plots/score_distribution.png') }}" class="img-fluid rounded" alt="Score Distribution">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="card p-3 shadow-sm border-0">
+                    <h4 class="h5 text-dark mb-3">Event Frequency Correlation Heatmap</h4>
+                    <div class="text-center">
+                        <img src="{{ url_for('static', filename='plots/event_heatmap.png') }}" class="img-fluid rounded" alt="Event Heatmap">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Candidates Risk Analysis Table (Includes Machine Learning Cluster Group) -->
+        <h2 class="mb-3 text-secondary">Candidates Risk Analysis</h2>
+        <div class="card shadow-sm border-0 mb-5">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover mb-0 align-middle">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Username</th>
+                                <th>Tab Switches</th>
+                                <th>Face Absences</th>
+                                <th>Integrity Score</th>
+                                <th>Cluster Group</th>
+                                <th>Risk Label</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if candidates %}
+                                {% for row in candidates %}
+                                <tr>
+                                    <td><strong>{{ row.username if row.username is defined else 'N/A' }}</strong></td>
+                                    <td>{{ row.tab_switches if row.tab_switches is defined else '-' }}</td>
+                                    <td>{{ row.face_absences if row.face_absences is defined else '-' }}</td>
+                                    <td><strong>{{ row.integrity_score if row.integrity_score is defined else '-' }}/100</strong></td>
+                                    <td>
+                                        <span class="badge bg-info text-dark">
+                                            Group {{ row.cluster_assignment if row.cluster_assignment is defined else '0' }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="badge 
+                                            {% if row.risk_label == 'Low Risk' %}bg-success
+                                            {% elif row.risk_label == 'Medium Risk' %}bg-warning text-dark
+                                            {% else %}bg-danger{% endif %}">
+                                            {{ row.risk_label if row.risk_label is defined else 'N/A' }}
+                                        </span>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="6" class="text-center py-3 text-muted">No candidate records found. Run synthetic data generator.</td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+<div class="mb-4">
+    <a href="http://localhost:8501" target="_blank" class="btn btn-primary">
+        🚀 Open Advanced Streamlit Analytics Dashboard
+    </a>
+</div>
+        <!-- 3. Violation Logs Table -->
+        <h2 class="mb-3 text-secondary">Violation Logs</h2>
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover mb-0 align-middle">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Username / Session ID</th>
+                                <th>Violation Type</th>
+                                <th>Timestamp</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if logs %}
+                                {% for log in logs %}
+                                <tr>
+                                    <td>{{ log.username if log.username is defined else log[0] }}</td>
+                                    <td><span class="text-danger fw-semibold">{{ log.event_type if log.event_type is defined else log[1] }}</span></td>
+                                    <td>{{ log.timestamp if log.timestamp is defined else log[2] }}</td>
+                                </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="3" class="text-center py-3 text-muted">No violation logs recorded.</td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

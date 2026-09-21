@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Examination Instructions - Exam Guard</title>
+    <style>
+        * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; padding: 0; }
+        body { background: #f4f7f6; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+        .card { background: white; width: 100%; max-width: 600px; padding: 35px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
+        h2 { color: #2c3e50; margin-bottom: 15px; text-align: center; }
+        .user-welcome { background: #ebf5fb; color: #2980b9; padding: 10px; border-radius: 6px; text-align: center; font-weight: bold; margin-bottom: 20px; }
+        ul { margin: 20px 0; padding-left: 20px; line-height: 1.8; color: #444; }
+        li { margin-bottom: 10px; }
+        .btn-start { display: block; width: 100%; text-align: center; padding: 14px; background: #e74c3c; color: white; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 16px; margin-top: 25px; }
+        .btn-start:hover { background: #c0392b; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Examination Instructions</h2>
+    <div class="user-welcome">Welcome, {{ username }}!</div>
+
+    <ul>
+        <li><b>Webcam Access:</b> Your camera must remain ON throughout the assessment.</li>
+        <li><b>Face Presence:</b> Keep your face fully visible in front of the camera. Face missing or multiple faces will trigger alerts.</li>
+        <li><b>Tab Switch Restriction:</b> Do not switch browser tabs or minimize the browser window.</li>
+        <li><b>Auto-Submission Enforcement:</b> Crossing <b>3 Tab Switches</b> will automatically terminate and submit your exam session immediately.</li>
+    </ul>
+
+    <a href="/exam" class="btn-start">I Agree, Start Exam</a>
+</div>
+
+</body>
+</html>
