@@ -1,4 +1,5 @@
- 🎓 Exam Monitoring AI System
+ 🎓 ExamGuard - Online Exam Monitoring and Integrity Platform
+
 
 ## 📌 Project Overview
 The **Exam Monitoring AI System** is a robust, Python-based web application designed to support and streamline online examination monitoring, analytics, and administrative workflows. Built using Flask and SQLite, the platform integrates intelligent AI components, data analytics, and dashboard interfaces to handle real-time monitoring data, track exam metrics, and manage testing documentation.
